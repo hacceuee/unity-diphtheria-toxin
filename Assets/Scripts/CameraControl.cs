@@ -4,79 +4,137 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    Vector3 mPrevPos = Vector3.zero;
-    Vector3 mPosDelta = Vector3.zero;
-    private Vector3 mouseWorldPosStart;
-
-    private Vector3 offset;
+    // Variables for rotation, panning, and zooming
+    private Vector3 previousMousePosition;
+    private Vector3 mouseDelta;
     private Vector3 screenPoint;
+    private Vector3 offset;
 
-    public float rotationSpeed = 10f; // Maximum speed of rotation
-    public float rotationAcceleration = 2f; // Acceleration factor when the mouse is released
-    private float currentRotationSpeed = 0f; // Current rotation speed (starts at 0)
+    // Rotation settings
+    public float rotationSpeed = 10f;
+    public float rotationAcceleration = 2f;
+    private float currentRotationSpeed = 0f;
 
-    // Update is called once per frame
-    void Update()
+    // Gentle spin cooldown settings
+    public float rotationCooldownDuration = 0.5f; // Duration of the pause after mouse release (in seconds)
+    private float rotationCooldown = 0f; // Timer for the cooldown
+
+    // Zoom settings
+    public float zoomSpeed = 0.5f;
+    public float minZoom = 20f;
+    public float maxZoom = 100f;
+    private Camera cam;
+
+    private void Start()
     {
-        if (Input.GetMouseButton(0) && !Input.GetKey(KeyCode.LeftControl))
+        cam = Camera.main;
+    }
+
+    private void Update()
+    {
+        // Handle camera orbit rotation with Left Mouse Button
+        if (Input.GetMouseButton(0) && !IsAltPressed())
         {
-            CamOrb();
+            HandleOrbitRotation();
         }
 
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftControl))
+        // Handle camera panning with Right Mouse Button
+        if (Input.GetMouseButtonDown(1))
         {
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            InitializePanning();
         }
-        if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftControl))
+        else if (Input.GetMouseButton(1))
         {
             Pan();
         }
-        
-        if (!Input.GetMouseButton(0))
+
+        // Handle zoom with Alt + Left or Right Mouse Button
+        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && IsAltPressed())
         {
-            GentleRotate();
+            Zoom();
+        }
+
+        // Reset the cooldown when any mouse button is held down
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        {
+            rotationCooldown = rotationCooldownDuration;
+            currentRotationSpeed = 0f; // Reset rotation speed
+        }
+        else
+        {
+            // Apply gentle rotation after cooldown
+            ApplyGentleRotation();
         }
     }
 
-    private void Pan()
+    // Handles orbiting the camera around the object
+    private void HandleOrbitRotation()
     {
-        if (Input.GetAxis("Mouse Y") != 0 || Input.GetAxis("Mouse X") != 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-            transform.position = curPosition;
+            previousMousePosition = Input.mousePosition;
         }
-    }
 
-    private void CamOrb()
-    {
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            mouseDelta = Input.mousePosition - previousMousePosition;
 
-        if (!Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
-        {
-            mPrevPos = Input.mousePosition;
-            //Debug.Log("right clicked");
-        }
-        if (Input.GetAxis("Mouse Y") != 0 || Input.GetAxis("Mouse X") != 0)
-        {
-            mPosDelta = Input.mousePosition - mPrevPos;
-            //Debug.Log("holding button");
+            float horizontalRotation = Vector3.Dot(mouseDelta, Camera.main.transform.right);
+            float verticalRotation = Vector3.Dot(mouseDelta, Camera.main.transform.up);
+
             if (Vector3.Dot(transform.up, Vector3.up) >= 0)
             {
-                transform.Rotate(transform.up, -Vector3.Dot(mPosDelta, Camera.main.transform.right), Space.World);
+                transform.Rotate(transform.up, -horizontalRotation, Space.World);
             }
             else
             {
-                transform.Rotate(transform.up, Vector3.Dot(mPosDelta, Camera.main.transform.right), Space.World);
+                transform.Rotate(transform.up, horizontalRotation, Space.World);
             }
-            transform.Rotate(Camera.main.transform.right, Vector3.Dot(mPosDelta, Camera.main.transform.up), Space.World);
-            mPrevPos = Input.mousePosition;
+
+            transform.Rotate(Camera.main.transform.right, verticalRotation, Space.World);
+            previousMousePosition = Input.mousePosition;
         }
     }
 
-    private void GentleRotate()
-    { }
-        // Gradually increase rotation speed after mouse release
+    // Initializes the panning with Right Mouse Button
+    private void InitializePanning()
+    {
+        screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+    }
+
+    // Handles panning the camera
+    private void Pan()
+    {
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 newPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + offset;
+            transform.position = newPosition;
+        }
+    }
+
+    // Handles zooming with Alt + Left or Right Mouse Button
+    private void Zoom()
+    {
+        float mouseY = Input.GetAxis("Mouse Y");
+        float mouseX = Input.GetAxis("Mouse X");
+
+        float scrollAmount = (mouseY - mouseX) * zoomSpeed;
+        cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - scrollAmount, minZoom, maxZoom);
+    }
+
+    // Applies a gentle automatic rotation with a cooldown delay after mouse release
+    private void ApplyGentleRotation()
+    {
+        // Decrease the cooldown timer if it's greater than 0
+        if (rotationCooldown > 0)
+        {
+            rotationCooldown -= Time.deltaTime;
+            return; // Pause gentle rotation until cooldown is over
+        }
+
+        // Gradually increase rotation speed after cooldown
         if (currentRotationSpeed < rotationSpeed)
         {
             currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotationSpeed, rotationAcceleration * Time.deltaTime);
@@ -86,4 +144,9 @@ public class CameraControl : MonoBehaviour
         transform.Rotate(Vector3.up, currentRotationSpeed * Time.deltaTime);
     }
 
+    // Helper method to check if either Left Alt or Right Alt is pressed
+    private bool IsAltPressed()
+    {
+        return Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt);
+    }
 }
