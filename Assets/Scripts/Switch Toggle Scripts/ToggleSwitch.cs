@@ -61,6 +61,12 @@ public class ToggleSwitch : MonoBehaviour, IPointerClickHandler
             sliderColors.disabledColor = Color.white;
             _slider.colors = sliderColors;
             _slider.transition = Selectable.Transition.None;
+
+            if (sliderValue > 0)
+            {
+            CurrentValue = true; 
+            }
+
         }
 
         public void SetupForManager(ToggleSwitchGroupManager manager)
