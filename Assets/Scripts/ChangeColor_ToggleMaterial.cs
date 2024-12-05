@@ -3,51 +3,41 @@ using UnityEngine;
 public class ChangeColor_ToggleMaterial : MonoBehaviour
 {
     [Header("Material Settings")]
-<<<<<<< Updated upstream:Assets/Scripts/ToggleMaterial.cs
-    public Material materialOne;  // First material
-    public Material materialTwo;  // Second material
-=======
     public Material materialOpaque;  // First material
     public Material materialTrans;  // Second material
-    public Color highlightedColor;
-    public Color defaultColor; 
->>>>>>> Stashed changes:Assets/Scripts/ChangeColor_ToggleMaterial.cs
+    public Color blue;
+    public Color white;
 
     private Renderer objectRenderer;
-    private bool isMaterialOne = true;  // To track which material is currently applied
+    private bool isWhite = true;  // To track which color is currently applied
+    private bool isOpaque = true;  // To track which material is currently applied
 
     private void Start()
     {
         objectRenderer = GetComponent<Renderer>();
         if (objectRenderer != null)
         {
-<<<<<<< Updated upstream:Assets/Scripts/ToggleMaterial.cs
-            objectRenderer.material = materialOne;  // Set initial material
-=======
             objectRenderer.material = materialOpaque;
-            objectRenderer.material.color = defaultColor;
+            objectRenderer.material.color = white;
             isWhite = true;
-            isOpaque = true; 
->>>>>>> Stashed changes:Assets/Scripts/ChangeColor_ToggleMaterial.cs
+            isOpaque = true;
         }
     }
 
     private void OnMouseDown()
     {
-<<<<<<< Updated upstream:Assets/Scripts/ToggleMaterial.cs
-=======
         // Toggle between the two colors
         if (objectRenderer != null)
         {
             if (isOpaque)
             {
                 if (isWhite)
-                {                   
-                    objectRenderer.material.color = highlightedColor;
+                {
+                    objectRenderer.material.color = blue;
                 }
                 else
                 {
-                    objectRenderer.material.color = defaultColor;
+                    objectRenderer.material.color = white;
                 }
 
                 isWhite = !isWhite; // Switch the color state
@@ -57,28 +47,19 @@ public class ChangeColor_ToggleMaterial : MonoBehaviour
 
     public void SwitchToggled()
     {
->>>>>>> Stashed changes:Assets/Scripts/ChangeColor_ToggleMaterial.cs
         // Toggle between the two materials
         if (objectRenderer != null)
         {
-            if (isMaterialOne)
+            if (isOpaque)
             {
-<<<<<<< Updated upstream:Assets/Scripts/ToggleMaterial.cs
-                objectRenderer.material = materialTwo;
-            }
-            else
-            {
-                objectRenderer.material = materialOne;
-=======
                 objectRenderer.material = materialTrans;
             }
             else
             {
                 objectRenderer.material = materialOpaque;
->>>>>>> Stashed changes:Assets/Scripts/ChangeColor_ToggleMaterial.cs
             }
 
-            isMaterialOne = !isMaterialOne;  // Switch the material state
+            isOpaque = !isOpaque;  // Switch the material state
         }
     }
 }
