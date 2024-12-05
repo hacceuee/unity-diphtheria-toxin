@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ToggleMaterial : MonoBehaviour
+public class ChangeOwnMaterial : MonoBehaviour
 {
     [Header("Material Settings")]
     public Material materialOne;  // First material
