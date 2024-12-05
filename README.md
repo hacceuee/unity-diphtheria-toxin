@@ -46,3 +46,7 @@ Hello! There are a couple of scripts you can use. I have set up example scenes. 
 2. Set-up: Place on the object you want to click. Assign the two materials.<br>
 <img width="400" alt="Screenshot 2024-12-05 at 3 33 44 PM" src="https://github.com/user-attachments/assets/e8beae6d-5a13-42e8-af13-f692e793dccd"><br>
 3. Action: When clicking on the object, it will change its own material. 
+
+### Other Set-Up 
+To make the switches turn off objects: <br>
+<img width="400" alt="Screenshot 2024-12-05 at 3 36 59 PM" src="https://github.com/user-attachments/assets/f7b7a40f-8976-4c0f-9916-2c609f57df3e">
