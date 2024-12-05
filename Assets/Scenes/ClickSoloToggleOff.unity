@@ -876,7 +876,7 @@ MonoBehaviour:
   m_text: '- Click mol surface to make everything else transparent
 
     - Click toggle
-    to toggle the mol surface'
+    to toggle the entire chain on/off'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2713df697824a8d4b9ea5576e3346ba0, type: 2}
   m_sharedMaterial: {fileID: -4661421123767043507, guid: 2713df697824a8d4b9ea5576e3346ba0, type: 2}
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Toggle Molecular Surfaces
+  m_text: Toggle Chains
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2713df697824a8d4b9ea5576e3346ba0, type: 2}
   m_sharedMaterial: {fileID: -4661421123767043507, guid: 2713df697824a8d4b9ea5576e3346ba0, type: 2}
