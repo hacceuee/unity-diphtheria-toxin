@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2323,8 +2323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialOpaque: {fileID: 2100000, guid: c672f293d5aef424e8311ccab8457392, type: 2}
   materialTrans: {fileID: 2100000, guid: da1c3321786a5ad48bf4d20371c9e2fb, type: 2}
-  blue: {r: 0, g: 0, b: 0, a: 0}
-  white: {r: 0, g: 0, b: 0, a: 0}
+  blue: {r: 0.3137255, g: 0.7176471, b: 0.6431373, a: 0.7490196}
+  white: {r: 0.3137255, g: 0.7176471, b: 0.6431373, a: 0.7490196}
 --- !u!114 &1363589608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3696,8 +3696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialOpaque: {fileID: 2100000, guid: 8e6df479fb7ea4727bed38462b8840d1, type: 2}
   materialTrans: {fileID: 2100000, guid: 82607a78af507ec4e8859491d9928be6, type: 2}
-  blue: {r: 0, g: 0, b: 0, a: 0}
-  white: {r: 0, g: 0, b: 0, a: 0}
+  blue: {r: 0.7213679, g: 0.44811308, b: 1, a: 0.7490196}
+  white: {r: 0.7213679, g: 0.44811308, b: 1, a: 0.7490196}
 --- !u!1 &1968685287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3831,8 +3831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialOpaque: {fileID: 2100000, guid: e74850fa6aeae4c539bd88d6b8d57b44, type: 2}
   materialTrans: {fileID: 2100000, guid: e758fe61d01716442ae275e5647eebd8, type: 2}
-  blue: {r: 0, g: 0, b: 0, a: 0}
-  white: {r: 0, g: 0, b: 0, a: 0}
+  blue: {r: 0.39607838, g: 0.57735103, b: 0.83137256, a: 0.7490196}
+  white: {r: 0.39607838, g: 0.57735103, b: 0.83137256, a: 0.7490196}
 --- !u!1 &1981648294
 GameObject:
   m_ObjectHideFlags: 0
