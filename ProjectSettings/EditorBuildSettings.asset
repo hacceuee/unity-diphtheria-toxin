@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Select Scene.unity
+    guid: 630de68dcb5024596a6bff1b388cac22
+  - enabled: 1
     path: Assets/Scenes/Purple.unity
     guid: d4b1bb68200654715b1ce2adececa97d
   - enabled: 1
@@ -17,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Blue.unity
     guid: b0178ebda3edb4cb6b8ed744197b5171
-  - enabled: 1
-    path: Assets/Scenes/Select Scene.unity
-    guid: 630de68dcb5024596a6bff1b388cac22
   m_configObjects: {}
