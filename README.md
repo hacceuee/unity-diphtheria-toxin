@@ -4,21 +4,21 @@ Hello! There are a couple of scripts you can use. I have set up example scenes. 
 <img width="958" alt="Screenshot 2024-12-05 at 3 19 30 PM" src="https://github.com/user-attachments/assets/500b2026-6939-4d74-a989-c1bfeac1836e">
 
 ## Scenes
-1) ClickHighlightToggleTransparent
-    - Click mol surface to make mol surface highlight/turn white
-    - Click toggle to make mol surface transparent
+1) Blue
+    - Click mol surface to turn it transparent
+    - Toggle turns entire chain off
     
-2) ClickSoloToggleOff
-    - Click mol surface to make everything else transparent
-    - Click toggle to toggle the entire chain on/off
+2) Purple
+    - Click mol surface to highlight/turn white
+    - Toggle turns mol surface transparent
     
-3) ClickSoloToggleTransparent
-    - Click mol surface to solo
-    - Click toggle to make transparent
+3) Pink
+    - Click mol surface to isolate that chain
+    - Toggle turns mol surface transparent
     
-4) ClickTransparentToggleOff
-    - Click mol surface to make it transparent
-    - Click toggle to turn the chain off
+4) Green
+    - Click mol surface turn other surfaces transparent
+    - Toggle turns entire chain off
 
 ## Scripts
 ### ChangeColor_ToggleMaterial
