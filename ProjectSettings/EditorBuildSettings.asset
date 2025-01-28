@@ -5,19 +5,26 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Purple.unity
     guid: d4b1bb68200654715b1ce2adececa97d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Green.unity
     guid: 360156cb0d2314a23a80ad41561780aa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pink.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Blue.unity
     guid: b0178ebda3edb4cb6b8ed744197b5171
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Select Scene.unity
     guid: 630de68dcb5024596a6bff1b388cac22
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/AR Scene.unity
+    guid: b75319fc108ced6459f9d41f09d0569f
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: c7288f825acfbd84a96e7f3bc2b579d3, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 31b3c58579149c5458507e024e421873, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 727c1549beac88745aa57542d95ffb44, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f31ebdcc154f1384998ad4d3a1ab44df, type: 2}
